@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume Autofill</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <span class="logo">📄</span>
+      <h1>Resume Autofill</h1>
+    </header>
+
+    <section class="resume-status" id="resumeStatus">
+      <div class="resume-row">
+        <span class="label">Resume:</span>
+        <span class="filename" id="fileName">No resume uploaded</span>
+      </div>
+      <div class="resume-row" id="loadedRow" hidden>
+        <span class="badge success">✓ Resume Loaded</span>
+      </div>
+    </section>
+
+    <section class="actions">
+      <input type="file" id="resumeFile" accept="application/pdf" hidden />
+
+      <button id="uploadBtn" class="btn primary">Upload Resume</button>
+      <button id="extractBtn" class="btn" disabled>Extract Resume</button>
+      <button id="detectBtn" class="btn">Detect Inputs</button>
+      <button id="autofillBtn" class="btn accent" disabled>Autofill</button>
+    </section>
+
+    <section class="status-log" id="statusLog" aria-live="polite"></section>
+
+    <footer class="app-footer">
+      <button id="clearBtn" class="btn link">Clear stored resume</button>
+    </footer>
+  </div>
+
+  <!-- PDF.js must load before pdfParser.js -->
+  <script src="../parser/pdf.min.js"></script>
+  <script src="../storage/storage.js"></script>
+  <script src="../utils/regex.js"></script>
+  <script src="../parser/pdfParser.js"></script>
+  <script src="../parser/extractor.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
